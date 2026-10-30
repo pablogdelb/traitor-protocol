@@ -448,7 +448,7 @@ http.createServer(async (req, res) => {
       broadcast(a.r);
       return json(res, 200, { ok: !err, error: err });
     }
-    if (req.method === 'GET' && u.pathname === '/health') return json(res, 200, { ok: true, rooms: rooms.size });
+    if (req.method === 'GET' && (u.pathname === '/health' || u.pathname === '/healthz')) return json(res, 200, { ok: true, rooms: rooms.size });
     // estáticos
     let f = u.pathname === '/' ? '/index.html' : u.pathname;
     const fp = path.join(__dirname, 'public', path.normalize(f).replace(/^(\.\.[/\\])+/, ''));
